@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { ProgressBar } from "primereact/progressbar";
 
-const layout = ({ children }) => {
+const Layout = ({ children }) => {
   const { status } = useSession();
 
   if (status === "unauthenticated") redirect("/login");
@@ -32,4 +32,4 @@ const layout = ({ children }) => {
     );
 };
 
-export default layout;
+export default Layout;

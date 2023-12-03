@@ -58,7 +58,7 @@ const Login = () => {
             <FaGoogle /> Sign in
           </Button>
           <div className="flex gap-2">
-            <p>Don't have an account ? </p>
+            <p>Don&apos;t have an account ? </p>
             <Link href={"/signup"}>
               <span className="text-blue-600 hover:underline"> Sign up</span>
             </Link>

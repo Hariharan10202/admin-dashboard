@@ -21,7 +21,6 @@ const authHandler = NextAuth({
         try {
           connectToDB();
           const user = await User.findOne({ email: credentials.email });
-          console.log(user);
           if (user) {
             const isPasswordCorrect = await bcrypt.compare(
               credentials.password,
