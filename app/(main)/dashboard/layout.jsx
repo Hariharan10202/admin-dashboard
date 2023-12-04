@@ -5,6 +5,9 @@ import Sidebar from "@/components/Sidebar";
 import { useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
 import { ProgressBar } from "primereact/progressbar";
+import "primereact/resources/themes/lara-dark-cyan/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 const Layout = ({ children, pageProps }) => {
   const { status } = useSession();
