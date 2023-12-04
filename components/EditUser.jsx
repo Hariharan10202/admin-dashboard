@@ -111,7 +111,7 @@ const EditUser = ({ viewData, setVisible }) => {
       phone,
       gender,
       role: selectedRole,
-      img: fileUrl ? fileUrl : "",
+      img: fileUrl ? fileUrl : viewData.img,
     });
     if (!result.success) console.log(result);
     else {

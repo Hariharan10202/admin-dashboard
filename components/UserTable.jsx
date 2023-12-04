@@ -123,7 +123,7 @@ export default function UserTable({ users }) {
   ];
 
   return (
-    <div className="card">
+    <div className="card ">
       <DataTable
         value={data}
         paginator

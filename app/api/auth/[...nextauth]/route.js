@@ -8,7 +8,7 @@ import { connectToDB } from "@/app/lib/utils";
 import { User } from "@/app/lib/model";
 import bcrypt from "bcrypt";
 
-const authHandler = NextAuth({
+const authHandlers = NextAuth({
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -46,6 +46,9 @@ const authHandler = NextAuth({
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     }),
   ],
+  pages: {
+    signIn: "/login",
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -61,10 +64,7 @@ const authHandler = NextAuth({
       }
       return session;
     },
-    async redirect({ baseUrl }) {
-      return baseUrl + "/dashboard";
-    },
   },
 });
 
-export { authHandler as GET, authHandler as POST };
+export { authHandlers as GET, authHandlers as POST };

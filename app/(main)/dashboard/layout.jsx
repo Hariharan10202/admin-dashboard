@@ -3,11 +3,12 @@
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { ProgressBar } from "primereact/progressbar";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, pageProps }) => {
   const { status } = useSession();
+  const path = usePathname();
 
   if (status === "unauthenticated") redirect("/login");
 

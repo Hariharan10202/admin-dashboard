@@ -4,7 +4,8 @@ import "primeicons/primeicons.css";
 import { AuthProvider } from "@/Providers/AuthProvider";
 import { ThemeProvider } from "./Providers/ThemeProvider";
 import "primereact/resources/themes/lara-dark-cyan/theme.css";
-import { getServerSession } from "next-auth";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
@@ -14,8 +15,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const session = await getServerSession();
-
   return (
     <html lang="en">
       <body className={`${poppins.className} bg-white dark:bg-[#1e0f24]`}>
