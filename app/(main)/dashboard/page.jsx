@@ -5,6 +5,9 @@ import { CircleDollarSign } from "lucide-react";
 import { ImStatsDots } from "react-icons/im";
 import { PiGraphDuotone } from "react-icons/pi";
 import { FaWallet } from "react-icons/fa6";
+import "primereact/resources/themes/lara-dark-cyan/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 const page = () => {
   return (

@@ -3,9 +3,6 @@ import "./globals.css";
 import "primeicons/primeicons.css";
 import { AuthProvider } from "@/Providers/AuthProvider";
 import { ThemeProvider } from "./Providers/ThemeProvider";
-import "primereact/resources/themes/lara-dark-cyan/theme.css";
-import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
