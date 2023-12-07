@@ -12,11 +12,12 @@ const ViewProduct = ({ viewData }) => {
       <div className="p-5 flex w-full items-start justify-between gap-5">
         <div className="relative w-[300px] h-[250px] p-5">
           <Image
-            className="rounded-2xl object-cover"
+            className="rounded-2xl object-cover opacity-0 transition-all"
             src={viewData.img}
             fill
             alt="user-image"
             sizes="(max-width: 300px)"
+            onLoadingComplete={(image) => image.classList.remove("opacity-0")}
           />
         </div>
 

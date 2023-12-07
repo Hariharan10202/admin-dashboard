@@ -28,7 +28,7 @@ const Layout = ({ children, pageProps }) => {
         <div className="flex-1 bg-[#ede9e9] text-black dark:bg-[#1e0f24]">
           <Sidebar />
         </div>
-        <div className="flex-[4] w-full text-white dark:bg-[#160b1a]">
+        <div className="flex-[4] flex flex-col w-full text-white dark:bg-[#160b1a]">
           <Navbar />
           {children}
         </div>

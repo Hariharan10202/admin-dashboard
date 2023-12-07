@@ -4,8 +4,9 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
-import { ImagePlusIcon, User, VerifiedIcon } from "lucide-react";
+import { ImagePlusIcon } from "lucide-react";
 import { AiFillMinusCircle } from "react-icons/ai";
+import toast from "react-hot-toast";
 
 import {
   getStorage,
@@ -23,11 +24,22 @@ const storage = getStorage(app);
 
 const formSchema = z
   .object({
-    title: z.string().min(1),
-    desc: z.string(),
-    price: z.string(),
-    stock: z.number(),
-    img: z.string().optional(),
+    title: z
+      .string()
+      .min(4, { message: "Title Should be atleast 4 character" }),
+    desc: z.string().refine((data) => data.length > 0, {
+      message: "Description is required",
+    }),
+    stock: z.number().refine((data) => data !== undefined, {
+      message: "Stock is required",
+    }),
+    price: z.string().refine((data) => data.length > 0, {
+      message: "Price is required",
+    }),
+
+    img: z.string().refine((data) => data.length > 0, {
+      message: "Image is mandatory",
+    }),
   })
   .strict();
 
@@ -82,8 +94,10 @@ const CreateProduct = ({ setVisible }) => {
       price,
       img: fileUrl ? fileUrl : "",
     });
-    if (!result.success) console.log(result);
-    else {
+    if (!result.success) {
+      console.log(result.error.issues);
+      return toast.error(result.error.issues[0].message);
+    } else {
       setProgress(true);
       await addProduct(result.data);
       setProgress(false);
@@ -98,11 +112,12 @@ const CreateProduct = ({ setVisible }) => {
         {fileUrl ? (
           <div className="relative w-[300px] h-[250px] p-5">
             <Image
-              className="rounded-2xl object-cover"
+              className="rounded-2xl object-cover opacity-0 transition-all"
               src={fileUrl}
               fill
               sizes="(max-width: 300px)"
               alt="user-image"
+              onLoadingComplete={(image) => image.classList.remove("opacity-0")}
             />
             <AiFillMinusCircle
               size={30}

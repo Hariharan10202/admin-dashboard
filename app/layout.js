@@ -4,6 +4,7 @@ import "primeicons/primeicons.css";
 import { AuthProvider } from "@/Providers/AuthProvider";
 import { ThemeProvider } from "./Providers/ThemeProvider";
 import dynamic from "next/dynamic";
+import ToasterProvider from "@/Providers/ToasterProvider";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
@@ -18,6 +19,7 @@ export default async function RootLayout({ children }) {
       <body className={`${poppins.className} bg-white dark:bg-[#1e0f24]`}>
         <div className="dark:bg-[#1e0f24] dark:text-white">
           <AuthProvider>
+            <ToasterProvider />
             <ThemeProvider
               attribute="class"
               defaultTheme="system"

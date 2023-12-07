@@ -19,15 +19,24 @@ import { RadioButton } from "primereact/radiobutton";
 import { Button } from "primereact/button";
 import { addUser, updateUser } from "@/app/lib/actions";
 import { z } from "zod";
+import toast from "react-hot-toast";
 
 const storage = getStorage(app);
 
 const formSchema = z
   .object({
-    username: z.string().min(4).max(20),
-    email: z.string(),
-    phone: z.string().min(10).max(12),
-    gender: z.string(),
+    username: z
+      .string()
+      .min(4, { message: "Username should be alteast 4 charater" })
+      .max(20),
+    email: z.string().min(6, { message: "Email should be alteast 6 charater" }),
+    phone: z
+      .string()
+      .min(10, { message: "Invalid phone number" })
+      .max(12, { message: "Invalid phone number" }),
+    gender: z.string().refine((data) => data.length > 0, {
+      message: "Gender is mandatory",
+    }),
     role: z.object({ name: z.string(), isAdmin: z.boolean() }),
     img: z.string().optional(),
   })
@@ -113,8 +122,10 @@ const EditUser = ({ viewData, setVisible }) => {
       role: selectedRole,
       img: fileUrl ? fileUrl : viewData.img,
     });
-    if (!result.success) console.log(result);
-    else {
+    if (!result.success) {
+      console.log(result.error.issues);
+      return toast.error(result.error.issues[0].message);
+    } else {
       await updateUser(viewData._id, result.data);
     }
 

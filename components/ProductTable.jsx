@@ -67,11 +67,12 @@ export default function ProductTable({ products }) {
       <div className="flex gap-2 items-center">
         <div className="w-[100px] h-[100px] relative">
           <Image
-            className="rounded-md object-cover"
+            className="rounded-md object-cover opacity-0 transition-all"
             fill
             src={rowData.img}
             alt={rowData.title}
             sizes="(max-width: 100px)"
+            onLoadingComplete={(image) => image.classList.remove("opacity-0")}
           />
         </div>
         <span className="text-[16px] font-semibold">{rowData.title}</span>

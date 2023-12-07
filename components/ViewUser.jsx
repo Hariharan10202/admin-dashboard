@@ -11,12 +11,13 @@ const ViewUser = ({ viewData }) => {
     <div className="p-5 flex w-full justify-between gap-5">
       <div className="relative w-[300px] h-[250px] p-5 ">
         <Image
-          className="rounded-2xl user-img object-cover"
+          className="rounded-2xl opacity-0 user-img object-cover transition-all"
           src={viewData.img}
           fill
           alt="user-image"
           sizes="(max-width: 300px)"
           data-pr-tooltip="User Image"
+          onLoadingComplete={(image) => image.classList.remove("opacity-0")}
         />
         <Tooltip target=".user-img" mouseTrack mouseTrackLeft={10} />
       </div>

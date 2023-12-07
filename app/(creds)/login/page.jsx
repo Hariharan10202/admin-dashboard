@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { InputText } from "primereact/inputtext";
 import { Password } from "primereact/password";
 import { FaGoogle } from "react-icons/fa";
@@ -11,6 +10,8 @@ import { redirect, useRouter } from "next/navigation";
 import "primereact/resources/themes/lara-dark-cyan/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import toast from "react-hot-toast";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 const Login = () => {
   const { status } = useSession();
@@ -26,14 +27,22 @@ const Login = () => {
   if (status === "unauthenticated") {
     const signInHandler = async () => {
       setLoading(true);
-      const res = await signIn("credentials", {
-        redirect: false,
-        email,
-        password,
-      });
-      if (res?.error) console.log(res?.error);
-      if (res?.url) router.replace("/dashoboard");
-      setLoading(false);
+      if (email && password) {
+        const res = await signIn("credentials", {
+          redirect: false,
+          email,
+          password,
+        });
+        if (res?.error) {
+          setLoading(false);
+          return toast.error("Invalid Username or Password");
+        }
+        if (res?.url) router.replace("/dashoboard");
+      } else {
+        setLoading(false);
+
+        return toast.error("Enter the required fields");
+      }
     };
 
     return (

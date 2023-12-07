@@ -18,16 +18,28 @@ import { Button } from "primereact/button";
 import { addProduct, updateProduct } from "@/app/lib/actions";
 import { z } from "zod";
 import { InputTextarea } from "primereact/inputtextarea";
+import toast from "react-hot-toast";
 
 const storage = getStorage(app);
 
 const formSchema = z
   .object({
-    title: z.string().min(4).max(50),
-    desc: z.string(),
-    price: z.string(),
-    stock: z.number(),
-    img: z.string().optional(),
+    title: z
+      .string()
+      .min(4, { message: "Title Should be atleast 4 character" }),
+    desc: z.string().refine((data) => data.length > 0, {
+      message: "Description is required",
+    }),
+    stock: z.number().refine((data) => !data.length, {
+      message: "Stock is required",
+    }),
+    price: z.string().refine((data) => data.length > 0, {
+      message: "Price is required",
+    }),
+
+    img: z.string().refine((data) => data.length > 0, {
+      message: "Image is mandatory",
+    }),
   })
   .strict();
 
@@ -82,8 +94,9 @@ const EditProduct = ({ setVisible, viewData }) => {
       price,
       img: fileUrl ? fileUrl : "",
     });
-    if (!result.success) console.log(result);
-    else {
+    if (!result.success) {
+      return toast.error(result.error.issues[0].message);
+    } else {
       await updateProduct(viewData._id, result.data);
     }
 
