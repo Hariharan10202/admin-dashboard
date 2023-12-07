@@ -23,7 +23,7 @@ const storage = getStorage(app);
 
 const formSchema = z
   .object({
-    title: z.string().min(4).max(20),
+    title: z.string().min(1),
     desc: z.string(),
     price: z.string(),
     stock: z.number(),
@@ -84,7 +84,9 @@ const CreateProduct = ({ setVisible }) => {
     });
     if (!result.success) console.log(result);
     else {
+      setProgress(true);
       await addProduct(result.data);
+      setProgress(false);
     }
 
     setVisible(false);

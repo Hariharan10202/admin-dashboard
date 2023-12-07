@@ -3,6 +3,7 @@ import "./globals.css";
 import "primeicons/primeicons.css";
 import { AuthProvider } from "@/Providers/AuthProvider";
 import { ThemeProvider } from "./Providers/ThemeProvider";
+import dynamic from "next/dynamic";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600"] });
 

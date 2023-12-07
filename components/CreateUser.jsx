@@ -119,7 +119,9 @@ const CreateUser = ({ mode, setVisible }) => {
     });
     if (!result.success) console.log(result);
     else {
+      setProgress(true);
       await addUser(result.data);
+      setProgress(false);
     }
 
     setVisible(false);

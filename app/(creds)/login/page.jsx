@@ -8,6 +8,9 @@ import { FaGoogle } from "react-icons/fa";
 import { signIn, useSession } from "next-auth/react";
 import { useLayoutEffect, useState } from "react";
 import { redirect, useRouter } from "next/navigation";
+import "primereact/resources/themes/lara-dark-cyan/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 const Login = () => {
   const { status } = useSession();
