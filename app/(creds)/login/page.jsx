@@ -11,6 +11,7 @@ import "primereact/resources/themes/lara-dark-cyan/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import toast from "react-hot-toast";
+import styles from "./login.module.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -39,19 +40,23 @@ const Login = () => {
 
   return (
     <div className="flex h-[100vh] justify-center w-full items-center p-9 text-white">
-      <div className="w-[30%] m-auto flex flex-col gap-y-5 bg-gray-800 p-9 rounded-2xl">
+      <div
+        className={`w-[30%] m-auto flex flex-col gap-y-5 bg-gray-800 p-9 rounded-2xl`}
+      >
         <h1 className="text-[20px] font-bold">Sign in</h1>
         <InputText
           value={email}
           name="email"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
+          className="w-full"
         />
         <Password
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
+          className={styles.passwordInput}
           feedback={false}
           placeholder="Password"
         />
