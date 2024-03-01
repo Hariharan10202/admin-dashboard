@@ -57,7 +57,7 @@ const authHandlers = NextAuth({
       }
       return token;
     },
-    async session({ session, token, providers }) {
+    async session({ session, token }) {
       if (token) {
         session.user.name = token.name ? token.name : token.username;
         session.user.image = token.picture ? token.picture : token.img;

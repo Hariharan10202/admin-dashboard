@@ -95,7 +95,6 @@ const CreateProduct = ({ setVisible }) => {
       img: fileUrl ? fileUrl : "",
     });
     if (!result.success) {
-      console.log(result.error.issues);
       return toast.error(result.error.issues[0].message);
     } else {
       setProgress(true);

@@ -123,7 +123,6 @@ const EditUser = ({ viewData, setVisible }) => {
       img: fileUrl ? fileUrl : viewData.img,
     });
     if (!result.success) {
-      console.log(result.error.issues);
       return toast.error(result.error.issues[0].message);
     } else {
       await updateUser(viewData._id, result.data);

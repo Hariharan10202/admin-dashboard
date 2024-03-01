@@ -43,9 +43,4 @@ export const authProviders = {
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     }),
   ],
-  callbacks: {
-    async redirect({ baseUrl }) {
-      return baseUrl + "/dashboard";
-    },
-  },
 };
