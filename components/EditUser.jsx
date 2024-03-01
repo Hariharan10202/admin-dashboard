@@ -125,7 +125,7 @@ const EditUser = ({ viewData, setVisible }) => {
     if (!result.success) {
       return toast.error(result.error.issues[0].message);
     } else {
-      await updateUser(viewData._id, result.data);
+      updateUser(viewData._id, result.data);
     }
 
     setVisible(false);
@@ -253,7 +253,7 @@ const EditUser = ({ viewData, setVisible }) => {
       <div className="flex items-center gap-5 justify-end px-5">
         <Button
           onClick={() => setVisible(false)}
-          type="button"
+          type="submit"
           loading={progress}
           outlined
         >

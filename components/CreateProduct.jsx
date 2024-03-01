@@ -200,7 +200,7 @@ const CreateProduct = ({ setVisible }) => {
         </div>
       </div>
       <div className="flex items-center gap-5 justify-end px-5">
-        <Button loading={progress} outlined>
+        <Button type="submit" loading={progress} outlined>
           Discard
         </Button>
         <Button loading={progress}>Save</Button>

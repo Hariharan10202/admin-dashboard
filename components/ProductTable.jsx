@@ -3,13 +3,9 @@ import React, { useState, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import DialogComponent from "./DialogComp";
-import CreateUser from "./CreateUser";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import { RiAdminFill } from "react-icons/ri";
-import { FaUser } from "react-icons/fa6";
 import { deleteProduct } from "@/app/lib/actions";
-import ViewUser from "./ViewUser";
 import { Edit, Eye, Plus, Trash2 } from "lucide-react";
 import CreateProduct from "./CreateProduct";
 import { Tooltip } from "primereact/tooltip";
@@ -106,7 +102,7 @@ export default function ProductTable({ products }) {
       <div className="flex gap-5">
         <form action={deleteProduct}>
           <input name="id" type="hidden" value={rowData._id} />
-          <button>
+          <button type="submit">
             <Trash2 className="cursor-pointer" />
           </button>
         </form>

@@ -11,7 +11,6 @@ import { FaUser } from "react-icons/fa6";
 import { deleteUser } from "@/app/lib/actions";
 import { Edit, Eye, Plus, Trash2 } from "lucide-react";
 import EditUser from "./EditUser";
-import { MultiSelect } from "primereact/multiselect";
 import ViewUser from "./ViewUser";
 
 export default function UserTable({ users }) {
@@ -95,7 +94,7 @@ export default function UserTable({ users }) {
       <div className="flex gap-5">
         <form action={deleteUser}>
           <input name="id" type="hidden" value={rowData._id} />
-          <button>
+          <button type="submit">
             <Trash2 className="cursor-pointer" />
           </button>
         </form>

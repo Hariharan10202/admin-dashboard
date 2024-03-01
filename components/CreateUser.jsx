@@ -65,7 +65,7 @@ const CreateUser = ({ mode, setVisible }) => {
 
   useEffect(() => {
     const uploadHandler = () => {
-      const fileName = new Date().getTime + image.name;
+      const fileName = new Date().getTime() + image.name;
       const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, image);
       uploadTask.on(
@@ -83,11 +83,14 @@ const CreateUser = ({ mode, setVisible }) => {
               break;
           }
         },
-        (error) => {},
+        (error) => {
+          console.log(error);
+          setProgress(false);
+          toast.error("Something went wrong!");
+        },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setProgress(false);
-
             setFileUrl(downloadURL);
           });
         }
@@ -267,7 +270,7 @@ const CreateUser = ({ mode, setVisible }) => {
         </div>
       </div>
       <div className="flex items-center gap-5 justify-end px-5">
-        <Button loading={progress} outlined>
+        <Button type="submit" loading={progress} outlined>
           Discard
         </Button>
         <Button loading={progress}>Save</Button>
